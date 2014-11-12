@@ -7,11 +7,27 @@ class User
     results = QuestionsDatabase.instance.execute('SELECT * FROM users')
     resutls.map { |result| User.new(result) }
   end
+
+  def self.find_by_name(fname, lname)
+    attrs = {fname: fname, lname: lname}
+
+    results = QuestionsDatabase.instance.execute(<<-SQL, attrs)
+      SELECT *
+      FROM users
+      WHERE fname = :fname AND lname = :lname
+
+
+    SQL
+
+    results.map{ |result| User.new(result)}
+
+  end
   
   def self.find_by_id id
     attrs = { id: id }
     result = QuestionsDatabase.instance.execute(
       'SELECT * FROM users WHERE users.id = :id', attrs)
+    User.new(result)
   end
 
   attr_accessor :id, :fname, :lname
@@ -21,7 +37,6 @@ class User
     @fname = options['fname']
     @lname = options['lname']
   end
-
 
 
 end
