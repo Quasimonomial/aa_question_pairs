@@ -1,0 +1,1 @@
+This is just some App Academy SQL practice, and is not too special.  Basically a simple app that plays with associtions, it is not and likely will never be close to functional.
