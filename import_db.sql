@@ -42,3 +42,38 @@ CREATE TABLE question_likes(
 	FOREIGN KEY (question_id) REFERENCES questions(id),
 	FOREIGN KEY (liker_id) REFERENCES users(id)
 );
+
+
+-- blantantly stealing this from the solutions, but i need some data
+INSERT INTO
+users (fname, lname)
+VALUES
+("Ned", "Ruggeri"), ("Kush", "Patel"), ("Earl", "Cat");
+
+-- Insert seed questions
+INSERT INTO
+questions (title, body, author_id)
+SELECT
+"Ned Question", "NED NED NED", users.id
+FROM
+users
+WHERE
+users.fname = "Ned" AND users.lname = "Ruggeri";
+INSERT INTO
+questions (title, body, author_id)
+SELECT
+"Kush Question", "KUSH KUSH KUSH", users.id
+FROM
+users
+WHERE
+users.fname = "Kush" AND users.lname = "Patel";
+INSERT INTO
+questions (title, body, author_id)
+SELECT
+"Earl Question", "MEOW MEOW MEOW", users.id
+FROM
+users
+WHERE
+users.fname = "Earl" AND users.lname = "Cat";
+
+
